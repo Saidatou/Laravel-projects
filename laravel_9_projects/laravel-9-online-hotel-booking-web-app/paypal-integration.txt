@@ -1,0 +1,92 @@
+PACKAGE:
+
+paypal/rest-api-sdk-php
+
+
+
+
+CONTROLLER:
+
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\Transaction;
+
+$apiContext = new \PayPal\Rest\ApiContext(
+	new \PayPal\Auth\OAuthTokenCredential(
+		$client, // ClientID
+		$secret // ClientSecret
+	)
+);
+
+$paymentId = request('paymentId');
+$payment = Payment::get($paymentId, $apiContext);
+
+$execution = new PaymentExecution();
+$execution->setPayerId(request('PayerID'));
+
+$transaction = new Transaction();
+$amount = new Amount();
+$details = new Details();
+
+$details->setShipping(0)
+	->setTax(0)
+	->setSubtotal($final_price);
+
+$amount->setCurrency($g_setting->paypal_currency);
+$amount->setTotal($final_price);
+$amount->setDetails($details);
+$transaction->setAmount($amount);
+
+$execution->addTransaction($transaction);
+
+$result = $payment->execute($execution, $apiContext);
+
+if($result->state == 'approved')
+{
+	$paid_amount = $result->transactions[0]->amount->total;
+}
+
+
+
+
+FRONT END:
+
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+<div id="paypal-button"></div>
+
+<script>
+	paypal.Button.render({
+		env: '{{ $env_type }}',
+		client: {
+			sandbox: '{{ $client }}',
+			production: '{{ $client }}'
+		},
+		locale: 'en_US',
+		style: {
+			size: 'medium',
+			color: 'blue',
+			shape: 'rect',
+		},
+		// Set up a payment
+		payment: function (data, actions) {
+			return actions.payment.create({
+				redirect_urls:{
+					return_url: '{{ url("payment/paypal") }}'
+				},
+				transactions: [{
+					amount: {
+						total: '{{ $final_price }}',
+						currency: 'USD'
+					}
+				}]
+			});
+		},
+		// Execute the payment
+		onAuthorize: function (data, actions) {
+			return actions.redirect();
+		}
+	}, '#paypal-button');
+</script>

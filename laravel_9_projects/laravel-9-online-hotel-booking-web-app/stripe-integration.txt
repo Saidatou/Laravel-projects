@@ -1,0 +1,50 @@
+PACKAGE:
+
+stripe/stripe-php
+
+
+
+CONTROLLER:
+
+Use Stripe;
+
+$cents = $amount*100;
+Stripe\Stripe::setApiKey($stripe_secret_key);
+$response = Stripe\Charge::create ([
+    "amount" => $cents,
+    "currency" => "usd",
+    "source" => $request->stripeToken,
+    "description" => env('APP_NAME')
+]);
+
+$responseJson = $response->jsonSerialize();
+$transaction_id = $responseJson['balance_transaction'];
+
+
+FRONT END: 
+
+<form action="{{ route('payment_stripe') }}" method="post">
+@csrf
+<script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="{{ $stripe_public_key }}"
+    data-amount="{{ $cents }}"
+    data-name="{{ env('APP_NAME') }}"
+    data-description=""
+    data-image="{{ asset('public/images/stripe_icon.png') }}"
+    data-currency="usd"
+    data-email="{{ $customer_email }}"
+>
+</script>
+</form>
+
+
+Stripe Test Card:
+4242 4242 4242 4242
+
+
+Publishable key
+pk_test_51LT28GF67T3XLjgLXbAMW8YNgvDyv6Yrg7mB6yHJhfmWgLrAL79rSBPvxcbKrsKtCesqJmxlOd259nMrNx4Qlhoa00zX7rOhOq
+
+Secret key
+sk_test_51LT28GF67T3XLjgL8ICWowviN9gL7cXzOr1hPOEVX94aizsO58jdO1CtIBpo583748yVPzAV46pivFolrjqZddSx00PSAfpyff

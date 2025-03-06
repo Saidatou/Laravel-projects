@@ -1,0 +1,22 @@
+Developer Account: 
+Email: hotelbooking001@gmail.com
+Password: TheBigHotel999
+
+
+https://www.sandbox.paypal.com/signin
+
+Sandbox - Personal:
+hotel_sandbox@per.com
+TheBigHotel999
+
+Sandbox - Business:
+hotel_sandbox@biz.com
+TheBigHotel999
+
+API Credential:
+APP Name: HOTEL_APP_NEW
+hotel_sandbox@biz.com
+Client ID:
+ARw2VtkTvo3aT7DILgPWeSUPjMK_AS5RlMKkUmB78O8rFCJcfX6jFSmTDpgdV3bOFLG2WE-s11AcCGTD
+Secret:
+EPi7BbZ0b5GP9jmy095MyNkfYjJc3PF42fC58emf-FXRZF7kEUmHKpV0rfGl6EEWXUx0TSvo0FmXkzuy
