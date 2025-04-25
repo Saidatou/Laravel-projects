@@ -1,0 +1,17 @@
+some websites
+https://ui.shadcn.com/docs/components/table
+
+npx shadcn@latest add table
+npx shadcn@latest add textarea
+
+https://inertiajs.com/file-uploads
+
+php artisan make:model Post -m
+php artisan make:controller PostIndexController --invokable
+php artisan make:controller PostCreateController --invokable
+php artisan make:controller PostStoreController --invokable
+php artisan make:controller PostEditController --invokable
+php artisan make:controller PostUpdateController --invokable
+php artisan make:resource PostResource
+php artisan make:controller PostDestroyController --invokable
+

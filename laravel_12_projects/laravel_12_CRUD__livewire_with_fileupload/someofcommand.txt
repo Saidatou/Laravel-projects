@@ -1,0 +1,17 @@
+let open these websites for copy the html, css, and other:
+https://flowbite.com/docs/getting-started/introduction/
+
+or
+
+https://fluxui.dev/docs/installation
+
+
+https://livewire.laravel.com/docs/actions
+
+In your terminal tape these command :
+php artisan make:model Post -m
+php artisan make:livewire Post/PostIndex
+php artisan make:livewire Posts/PostIndex
+php artisan make:livewire Posts/PostCreate
+php artisan make:livewire Posts/PostEdit
+php artisan livewire:form Posts/PostForm

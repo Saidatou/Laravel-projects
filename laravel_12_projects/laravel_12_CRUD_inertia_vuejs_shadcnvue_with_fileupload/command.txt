@@ -1,0 +1,27 @@
+websites
+https://www.shadcn-vue.com/
+
+npx shadcn-vue@latest add table
+npx shadcn-vue@latest add textarea
+npx shadcn-vue@latest add sonner
+then in class HandleInertiaRequests put this
+'fash' => [
+    'success' => $request->session()->get('success'),
+    'error' => $request->session()->get('error'),
+],
+
+
+
+artisan command
+
+php artisan make:model Post -m
+php artisan make:resource PostResource
+
+php artisan make:controller PostIndexController --invokable
+php artisan make:controller PostStoreController --invokable
+php artisan make:controller PostUpdateController --invokable
+php artisan make:controller PostDestroyController --invokable
+php artisan make:controller PostEditController --invokable
+
+
+
